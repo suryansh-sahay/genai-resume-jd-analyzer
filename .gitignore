@@ -1,0 +1,39 @@
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# Dependencies
+# =========================
+node_modules/
+
+# Build output
+# =========================
+dist/
+build/
+coverage/
+
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+# =========================
+.vscode/
+.idea/
+
+# Temporary files
+# =========================
+*.tmp
+*.temp
+.cache/
+*.exe
