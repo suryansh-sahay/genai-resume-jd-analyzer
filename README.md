@@ -10,15 +10,11 @@ A full-stack application that helps candidates analyze their resumes against job
 
 ## Table of Contents
 
-* [Overview](#overview)
-* [Current Features](#current-features)
-* [Architecture](#architecture)
 * [Tech Stack](#tech-stack)
 * [Project Structure](#project-structure)
 * [Getting Started](#getting-started)
 * [Environment Variables](#environment-variables)
 * [Development Workflow](#development-workflow)
-* [CI Pipeline](#ci-pipeline)
 * [Roadmap](#roadmap)
 * [Project Status](#project-status)
 
