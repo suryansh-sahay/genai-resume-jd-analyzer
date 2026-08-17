@@ -4,8 +4,10 @@ import { useAuth } from '../hooks/useAuth'
 
 const Register = () => {
  
-    const {loading, handleRegister} = useAuth();
     const navigate = useNavigate();
+
+    const {loading, handleRegister} = useAuth();
+    const [error, setError] = useState("")
 
     const [ username, setUsername ] = useState("")
     const [ email, setEmail ] = useState("")
@@ -13,8 +15,33 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await handleRegister({username, email, password})
-        navigate("/")
+        setError("");
+
+        if(!username.trim()){
+            setError("Username is required.")
+            return;
+        }
+
+        if(!email.trim()){
+            setError("Email is required.")
+            return;
+        }
+
+        if(!password.trim()){
+            setError("Password is required.")
+            return;
+        }
+
+        const success = await handleRegister({
+            username,
+            email,
+            password,
+        })
+
+        if(success) 
+            navigate("/")
+        else 
+            setError("Unable to create account. Please try again.")
     }
 
     if (loading) {
@@ -37,23 +64,40 @@ const Register = () => {
                     <div className="input-group">
                         <label htmlFor="username">Username</label>
                         <input 
-                            onChange={ (e) => {setUsername(e.target.value)} }
-                            type="text" id="username" name="username" placeholder="Enter Username"/>
+                            value={username}
+                            onChange={(e) => {
+                                setUsername(e.target.value)
+                                setError("")
+                            }}
+                            type="text" id="username" name="username" placeholder="Enter Username"
+                        />
                     </div>
 
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input 
-                            onChange={ (e) => {setEmail(e.target.value)} }
-                            type="email" id="email" name="email" placeholder="id@email.com"/>
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value)
+                                setError("")
+                            }}
+                            type="email" id="email" name="email" placeholder="id@email.com"
+                        />
                     </div>
                     
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
-                        <input  
-                            onChange={ (e) => {setPassword(e.target.value)} }
-                            type="password" id="password" name="password" placeholder="************"/>
+                        <input 
+                            value={password} 
+                            onChange={(e) => {
+                                setPassword(e.target.value)
+                                setError("")
+                            }}
+                            type="password" id="password" name="password" placeholder="************"
+                        />
                     </div>
+
+                    {error && <p className="form-error">{error}</p>}
 
                     <button className='button primary-button' type="submit">Register</button>
                 </form>
