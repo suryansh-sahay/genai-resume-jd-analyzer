@@ -1,5 +1,5 @@
 import { getAllInterviewReports, generateInterviewReport, getInterviewReportById, generateResumePdf } from "../services/interview.api"
-import { useContext, useEffect } from "react"
+import { useCallback, useContext, useEffect } from "react"
 import { InterviewContext } from "../interview.context"
 import { useParams } from "react-router"
 
@@ -17,7 +17,7 @@ export const useInterview = () => {
 
     const generateReport = async ({ jobDescription, selfDescription, resumeFile }) => {
         setLoading(true)
-        let response = null
+        let response
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
             setReport(response.interviewReport)
@@ -27,12 +27,12 @@ export const useInterview = () => {
             setLoading(false)
         }
 
-        return response.interviewReport
+        return response?.interviewReport
     }
 
-    const getReportById = async (interviewId) => {
+    const getReportById = useCallback(async (interviewId) => {
         setLoading(true)
-        let response = null
+        let response
         try {
             response = await getInterviewReportById(interviewId)
             setReport(response.interviewReport)
@@ -41,12 +41,13 @@ export const useInterview = () => {
         } finally {
             setLoading(false)
         }
-        return response.interviewReport
-    }
 
-    const getReports = async () => {
+        return response?.interviewReport
+    }, [ setLoading, setReport ])
+
+    const getReports = useCallback(async () => {
         setLoading(true)
-        let response = null
+        let response
         try {
             response = await getAllInterviewReports()
             setReports(response.interviewReports)
@@ -56,12 +57,12 @@ export const useInterview = () => {
             setLoading(false)
         }
 
-        return response.interviewReports
-    }
+        return response?.interviewReports
+    }, [ setLoading, setReports ])
 
     const getResumePdf = async (interviewReportId) => {
         setLoading(true)
-        let response = null
+        let response
         try {
             response = await generateResumePdf({ interviewReportId })
             const url = window.URL.createObjectURL(new Blob([ response ], { type: "application/pdf" }))
@@ -84,7 +85,7 @@ export const useInterview = () => {
         } else {
             getReports()
         }
-    }, [ interviewId ])
+    }, [ interviewId, getReportById, getReports ])
 
     return { loading, report, reports, generateReport, getReportById, getReports, getResumePdf }
 
