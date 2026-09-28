@@ -290,13 +290,13 @@ The CI pipeline will be extended with backend linting, automated tests, and depl
 * [x] Protected routes
 * [x] Authentication persistence
 * [x] GitHub Actions CI
-* [ ] Resume upload
-* [ ] Resume parsing
-* [ ] Job description input and parsing
-* [ ] Resume-to-JD analysis
-* [ ] Skill matching and gap detection
-* [ ] AI-generated recommendations
-* [ ] Match scoring
+* [x] Resume upload
+* [x] Resume parsing
+* [x] Job description input and parsing
+* [x] Resume-to-JD analysis
+* [x] Skill matching and gap detection
+* [x] AI-generated recommendations
+* [x] Match scoring
 * [ ] User dashboard
 
 ### Infrastructure
@@ -325,7 +325,7 @@ The application currently provides the foundation required for the core product,
 * Pull-request based development
 * Automated CI checks
 
-The next development phase focuses on implementing the core resume and job-description analysis functionality.
+The next development phase focuses on deploying the core resume and job-description analysis functionality.
 
 ---
 
