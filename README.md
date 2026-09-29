@@ -136,8 +136,8 @@ Make sure the following are installed:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/suryansh-sahay/GenAI_Resume-JD-Analyzer.git
-cd GenAI_Resume-JD-Analyzer
+git clone https://github.com/suryansh-sahay/genai-resume-jd-analyzer.git
+cd genai-resume-jd-analyzer
 ```
 
 ### Backend Setup
@@ -173,7 +173,7 @@ http://localhost:3000
 Open a new terminal and navigate to:
 
 ```text
-GenAI_Resume-JD-Analyzer/Frontend
+genai-resume-jd-analyzer/Frontend
 ```
 
 Install dependencies:
