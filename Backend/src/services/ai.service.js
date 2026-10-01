@@ -1,7 +1,7 @@
 const { GoogleGenAI } = require("@google/genai")
 const { z } = require("zod")
 const { zodToJsonSchema } = require("zod-to-json-schema")
-// const puppeteer = require("puppeteer")
+const puppeteer = require("puppeteer")
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY
@@ -64,10 +64,10 @@ async function generatePdfFromHtml(htmlContent) {
 
     const pdfBuffer = await page.pdf({
         format: "A4", margin: {
-            top: "20mm",
-            bottom: "20mm",
-            left: "15mm",
-            right: "15mm"
+            top: "10mm",
+            bottom: "10mm",
+            left: "5mm",
+            right: "5mm"
         }
     })
 
